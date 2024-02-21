@@ -1,8 +1,15 @@
-@import "node_modules/bootstrap/scss/bootstrap";
+// Fonts
+@import url("https://fonts.bunny.net/css?family=Nunito");
 
-.btn-invisible {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+.BgLogin {
+    background-image: url("https://www.liderempresarial.com/wp-content/uploads/2022/05/UPQ.jpg");
+    background-size: cover;
+
+    background-color: rgb(255, 255, 255);
 }
