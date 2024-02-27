@@ -13,11 +13,11 @@ class AddColumnsToUsersTable extends Migration
      */
     public function up()
     {
-       Schema::table('users', function (Blueprint $table) {
-        $table->string('last_name_1')->after('name')->nullable();
-        $table->string('last_name_2')->after('last_name_1')->nullable();
-        $table->unsignedBigInteger('gender_id')->nullable();
-        $table->unsignedTinyInteger('status')->default(1);
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('last_name_1')->after('name')->nullable();
+            $table->string('last_name_2')->after('last_name_1')->nullable();
+            $table->unsignedBigInteger('gender_id')->nullable();
+            $table->unsignedTinyInteger('status')->default(1);
         });
     }
 
@@ -29,10 +29,10 @@ class AddColumnsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-        $table->dropColumn('last_name_1');
-        $table->dropColumn('last_name_2');
-        $table->dropColumn('gender_id');
-        $table->dropColumn('status');
+            $table->dropColumn('last_name_1');
+            $table->dropColumn('last_name_2');
+            $table->dropColumn('gender_id');
+            $table->dropColumn('status');
         });
     }
 }
