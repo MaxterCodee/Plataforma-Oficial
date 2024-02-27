@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\weekController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,7 +42,6 @@ Route::post('/areas', [App\Http\Controllers\AreaController::class, 'store'])->na
 Route::put('/areas/{id}', [App\Http\Controllers\AreaController::class, 'update'])->name('areas.update');
 Route::delete('/areas/{id}', [App\Http\Controllers\AreaController::class, 'destroy'])->name('areas.destroy');
 
-
 //Rutas para administrar teachers
 Route::get('/teachers', [App\Http\Controllers\TeacherController::class, 'index'])->name('teachers.index');
 
@@ -50,6 +50,21 @@ Route::get('/students', [App\Http\Controllers\StudentController::class, 'index']
 
 //Rutas para administrar cursos
 Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])->name('courses.index');
+Route::post('/cursos', [App\Http\Controllers\CourseController::class, 'store'])->name('courses.store');
+Route::put('/cursos/{id}', [App\Http\Controllers\CourseController::class, 'update'])->name('courses.update');
+Route::delete('/cursos/{id}', [App\Http\Controllers\CourseController::class, 'destroy'])->name('courses.destroy');
+
+// rutas para semanas
+Route::get('/week/{course}', [weekController::class, 'index'])->name('weeks.index');
+Route::post('/week', [App\Http\Controllers\weekController::class, 'store'])->name('weeks.store');
+
+// rutas lecciones
+Route::get('/lessons{week}', [App\Http\Controllers\LessonController::class, 'index'])->name('lessons.index');
+Route::post('/lessons', [App\Http\Controllers\LessonController::class, 'store'])->name('lessons.store');
+
+// rutas para contenido
+Route::get('/content{lesson}', [App\Http\Controllers\ContentController::class, 'index'])->name('content.index');
+Route::post('/content', [App\Http\Controllers\ContentController::class, 'store'])->name('content.store');
 
 //Rutas pata afministrar examenes
 Route::get('/exams', [App\Http\Controllers\ExamController::class, 'index'])->name('exams.index');
