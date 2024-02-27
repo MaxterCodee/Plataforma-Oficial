@@ -78,7 +78,7 @@
                             <!-- Botón para abrir el modal -->
                             <button type="button" class="btn btn-invisible" data-bs-toggle="modal"
                                 data-bs-target="#editModal_{{ $career->id }}">
-                                <img src="{{ asset('storage/images/icons/wedit.svg') }}" width="35px" class="me-2">
+                                <i class="bi bi-gear"></i>
                             </button>
 
                             <!-- Modal de edición -->
@@ -140,7 +140,7 @@
                             <!-- Botón eliminar carrera -->
                             <button type="button" class="btn btn-invisible" data-bs-toggle="modal"
                                 data-bs-target="#confirmModal_{{ $career->id }}">
-                                <img src="{{ asset('storage/images/icons/wdelete.svg') }}" width="35px" class="me-2">
+                                <i class="bi bi-trash"></i>
                             </button>
 
                             <!-- Modal de confirmación -->

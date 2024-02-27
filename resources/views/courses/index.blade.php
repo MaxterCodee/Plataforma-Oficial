@@ -121,6 +121,4 @@
       <i class="fas fa-plus"></i>
     </button>
   </div>
-  @include('Mod.CrearVista')
-  @include('Mod.ModificarVista')
 </x-app-layout>

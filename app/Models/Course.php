@@ -11,11 +11,7 @@ class Course extends Model
 
     protected $fillable = [
         'name',
-        'description',
-        'competencias', 
-        'expiration_date',
-        'status',
-        'image_url',
+        'description'
     ];
 
     public function courseCareers()

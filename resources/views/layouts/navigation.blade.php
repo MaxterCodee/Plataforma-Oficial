@@ -23,7 +23,6 @@
                         id="menu">
                         <li>
                             <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                <img src="{{ asset('storage/images/icons/gestion.svg') }}" width="25px">
                                 <span class="ms-1 d-none d-sm-inline"> &nbsp;&nbsp;Gestionar</span>
                             </a>
                         </li>
@@ -33,7 +32,6 @@
 
                             <li class="w-100 d-flex align-items-center">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <img src="{{ asset('storage/images/icons/careers.svg') }}" width="25px" class="me-2">
                                 <a href="{{ route('careers.index') }}" class="nav-link px-0">
                                     <span class="d-none d-sm-inline">Carreras</span>
                                 </a>
@@ -41,7 +39,6 @@
 
                             <li class="w-100 d-flex align-items-center">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <img src="{{ asset('storage/images/icons/area.svg') }}" width="25px" class="me-2">
                                 <a href="{{ route('areas.index') }}" class="nav-link px-0">
                                     <span class="d-none d-sm-inline">Areas</span>
                                 </a>
@@ -49,7 +46,6 @@
 
                             <li class="w-100 d-flex align-items-center">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <img src="{{ asset('storage/images/icons/teachers.png') }}" width="22px" class="me-2">
                                 <a href="{{ route('teachers.index') }}" class="nav-link px-0">
                                     <span class="d-none d-sm-inline">Profesores</span>
                                 </a>
@@ -57,7 +53,6 @@
 
                             <li class="w-100 d-flex align-items-center">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <img src="{{ asset('storage/images/icons/students.png') }}" width="25px" class="me-2">
                                 <a href="{{ route('students.index') }}" class="nav-link px-0">
                                     <span class="d-none d-sm-inline">Estudiantes</span>
                                 </a>
@@ -65,7 +60,6 @@
 
                             <li class="w-100 d-flex align-items-center">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <img src="{{ asset('storage/images/icons/courses.svg') }}" width="22px" class="me-2">
                                 <a href="{{ route('courses.index') }}" class="nav-link px-0">
                                     <span class="d-none d-sm-inline">&nbsp;Cursos</span>
                                 </a>
@@ -73,7 +67,6 @@
 
                             <li class="w-100 d-flex align-items-center">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <img src="{{ asset('storage/images/icons/exams.svg') }}" width="22px" class="me-2">
                                 <a href="{{ route('exams.index') }}" class="nav-link px-0">
                                     <span class="d-none d-sm-inline">&nbsp;Examenes</span>
                                 </a>
@@ -81,7 +74,6 @@
 
                             <li class="w-100 d-flex align-items-center">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <img src="{{ asset('storage/images/icons/encuesta.svg') }}" width="22px" class="me-2">
                                 <a href="{{ route('tests.index') }}" class="nav-link px-0">
                                     <span class="d-none d-sm-inline">&nbsp;Encuesta</span>
                                 </a>
@@ -170,13 +162,13 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ml-auto">
-                            <li>
-                                <img src="{{ asset('img/logo.png') }}" width="300px" class="position-absolute start-0">
-                            </li>
                             <li class="nav-item active">
-                                <button class="btn btn-transparent end-0 ">
+                                <button class="btn btn-transparent start-0">
                                     <i class="bi bi-person" style="font-size: 1.5rem;"></i>
                                 </button>
+                            </li>
+                            <li>
+                                <img src="{{ asset('img/logo.png') }}" width="300px" class="position-absolute end-0">
                             </li>
                         </ul>
                     </div>
