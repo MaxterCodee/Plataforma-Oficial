@@ -10,14 +10,14 @@ use Illuminate\Http\Request;
 class ContentController extends Controller
 {
     //
-    public function index($lessonId,$weekId)
+    public function index($lessonId)
     {
         $lesson = Lesson::findOrFail($lessonId);
         $content = $lesson->content;
-        $week = Week::findOrFail($weekId);
+        $week = Week::findOrFail($lesson->week()->first()->id);
         $lessons = $week->lessons;
     
-        return view('lessons.index', compact('lesson', 'content'));
+        return view('lessons.index', compact('lesson', 'content', 'lessons' ,'week'));
     }
 
     public function lesson()
@@ -41,21 +41,29 @@ public function store(Request $request)
 
     // Obtener la lección asociada
     $lesson = Lesson::findOrFail($request->get('lesson_id'));
-    $week = Week::findOrFail($request->get('week_id'));
+    $week = Week::findOrFail($lesson->week()->first()->id);
+
+    
+    Content::create([
+        'number' => $request->number,
+        'markdown' => $request->markdown,
+        'lesson_id' => $lesson->id,
+    ]);
+
 
     // Crear y guardar el nuevo contenido
-    $content = new Content();
-    $content->number = $request->get('number');
-    $content->markdown = $request->get('markdown');
+    // $content = new Content();
+    // $content->number = $request->get('number');
+    // $content->markdown = $request->get('markdown');
 
     // Asignar la lección asociada
-    $content->lesson()->associate($lesson);
-    // Asignar la semana asociada
-    $lesson->week()->associate($week);
+    // $content->lesson()->associate($lesson);
+    // // Asignar la semana asociada
+    // $lesson->week()->associate($week);
 
-    $content->save(); // Save the content, not the lesson
+    // $content->save(); // Save the content, not the lesson
 
-    return redirect()->route('lessons.index', ['week' => $week->id, 'lesson' => $lesson->id])
+    return redirect()->route('content.index', ['lesson' => $lesson->id])
                  ->with('success', 'Content created successfully');
 
 }

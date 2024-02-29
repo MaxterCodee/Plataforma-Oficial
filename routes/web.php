@@ -50,7 +50,7 @@ Route::get('/students', [App\Http\Controllers\StudentController::class, 'index']
 
 //Rutas para administrar cursos
 Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])->name('courses.index');
-Route::post('/cursos', [App\Http\Controllers\CourseController::class, 'store'])->name('courses.store');
+Route::post('/courses', [App\Http\Controllers\CourseController::class, 'store'])->name('courses.store');
 Route::put('/cursos/{id}', [App\Http\Controllers\CourseController::class, 'update'])->name('courses.update');
 Route::delete('/cursos/{id}', [App\Http\Controllers\CourseController::class, 'destroy'])->name('courses.destroy');
 
@@ -59,11 +59,11 @@ Route::get('/week/{course}', [weekController::class, 'index'])->name('weeks.inde
 Route::post('/week', [App\Http\Controllers\weekController::class, 'store'])->name('weeks.store');
 
 // rutas lecciones
-Route::get('/lessons{week}', [App\Http\Controllers\LessonController::class, 'index'])->name('lessons.index');
+Route::get('/lessons/{week}', [App\Http\Controllers\LessonController::class, 'index'])->name('lessons.index');
 Route::post('/lessons', [App\Http\Controllers\LessonController::class, 'store'])->name('lessons.store');
 
 // rutas para contenido
-Route::get('/content{lesson}', [App\Http\Controllers\ContentController::class, 'index'])->name('content.index');
+Route::get('/content/{lesson}', [App\Http\Controllers\ContentController::class, 'index'])->name('content.index');
 Route::post('/content', [App\Http\Controllers\ContentController::class, 'store'])->name('content.store');
 
 //Rutas pata afministrar examenes

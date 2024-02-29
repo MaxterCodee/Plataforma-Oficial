@@ -20,7 +20,7 @@ class CourseController extends Controller
         'name' => 'required',
         'description' => 'required',
         'expiration_date' => 'required|date',
-        'status' => 'required|in:activo,inactivo',
+        'status' => 'required',
     ]);
 
     $course = new Course();
