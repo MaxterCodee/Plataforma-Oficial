@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SatisfactionTestController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
+
+Route::get('/register',function(){
+    return view(('auth.register'));
+})->name('registerView');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -60,3 +65,7 @@ Route::get('/exams', [App\Http\Controllers\ExamController::class, 'index'])->nam
 //ruta para administrar tests
 Route::get('/tests', [App\Http\Controllers\TestController::class, 'index'])->name('tests.index');
 require __DIR__.'/auth.php';
+
+Route::get('/evaluacionDocente',[SatisfactionTestController::class,'showQuestions'])->name('showQuestionsSatsfn');
+
+Route::post('/calificaciones',[SatisfactionTestController::class,'index'])->name('califProfe');
