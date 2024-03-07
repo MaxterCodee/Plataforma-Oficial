@@ -1,3 +1,27 @@
+$info: #002d72;
+$warning: #ba0c2f;
+.red-color {
+    background-color: #ba0c2f;
+    border-radius: 10px;
+}
+
+body {
+    font-family: "Gotham", sans-serif;
+}
+
+h1,
+h2,
+h5 {
+    font-family: "Gotham", sans-serif;
+}
+
+/* Ajusta según sea necesario para otros elementos */
+.card-title,
+.card-text,
+p,
+button {
+    font-family: "Gotham", sans-serif;
+}
 @import "node_modules/bootstrap/scss/bootstrap";
 
 .btn-invisible {

@@ -19,8 +19,7 @@
     </head>
     <body>
         @extends('layouts.navigation')
-
-
+        
         @livewireScripts
     </body>
 </html>

@@ -1,15 +1,7 @@
-<style>
-    .bg-color {
-    background-color: #A7102E; /* Reemplaza RR, GG y BB con los valores hexadecimales de tu color deseado */
-    border-radius: 10px; /* Puedes ajustar el valor según la cantidad de redondeo que desees */
-
-}
-</style>
-
-<div class="container-fluid">
+{{-- <div class="container-fluid">
     <div class="row">
-      <!-- Barra lateral -->
-      <div class="col-md-3 col-xl-2 bg-dark sidebar">
+    <!-- Barra lateral -->
+    <div class="col-md-3 col-xl-2 bg-dark sidebar">
         <!-- Contenido de tu barra lateral aquí -->
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark overflow-auto fixed-top"> <!-- Agrega la clase 'fixed-top' aquí -->
             <h1></h1>
@@ -151,60 +143,51 @@
                 </div>
             </div>
         </div>
-      </div>
+    </div>
+    </div>
+    <div class="row">
+        
+        </div>
+    </div>
+</div> --}}
 
-      <!-- Barra de navegación -->
-      <div class="col-md-9 ml-md-auto col-lg-10 px-4">
-        <!-- Contenido principal de tu página aquí -->
-        <br>
-        <div class="navbar navbar-expand-lg navbar-light bg-color">
-            <a class="navbar-brand" href="#">&nbsp;&nbsp; Mi Sitio</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+{{-- <div class="col-md-9 ml-md-auto col-lg-10 px-0"> --}}
+    <!-- Barra de navegación -->
+    <div class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-3 border-dark-subtle rounded-0">
+        <a class="navbar-brand ms-2 my-0 py-0" href="#">
+            <img src="{{ asset('img/logo.png') }}" alt="UPQ" width="60" height="60">
+        </a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#" style="color: rgb(250, 250, 250);">Inicio</a>
+                        <a class="nav-link" href="#" style="">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: rgb(255, 255, 255);">Cursos</a>
+                        <a class="nav-link" href="{{ route('courses.index') }}" style="">Cursos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: rgb(255, 255, 255);">Dashboard</a>
+                        <a class="nav-link" href="#" style="">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: rgb(255, 255, 255);">Contacto</a>
+                        <a class="nav-link" href="#" style="">Contacto</a>
                     </li>
                 </ul>
             </div>
         </div>
-
+        
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
-      </div>
-    </div>
-  </div>
+        <!-- Contenido principal de tu página aquí -->
+{{-- </div> --}}
 
 
-
-<div class="container-fluid">
+{{-- <div class="container-fluid">
     <div class="row flex-nowrap"><br>
-
-
-
         <div class="col py-3" style="margin-left: 18%;"> <!-- Ajusta el valor del margen según sea necesario -->
-
-
-
-            {{-- @section('content')
-
+            @section('content')
             {{ $slot }}
-            @endsection --}}
-
+            @endsection
         </div>
-
-
     </div>
-</div>
+</div> --}}
