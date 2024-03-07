@@ -50,6 +50,9 @@ Route::get('/students', [App\Http\Controllers\StudentController::class, 'index']
 
 //Rutas para administrar cursos
 Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])->name('courses.index');
+Route::post('/careers', [App\Http\Controllers\CourseController::class, 'store'])->name('courses.store');
+Route::put('/careers/{id}', [App\Http\Controllers\CourseController::class, 'update'])->name('courses.update');
+Route::delete('/careers/{id}', [App\Http\Controllers\CourseController::class, 'destroy'])->name('courses.destroy');
 
 //Rutas pata afministrar examenes
 Route::get('/exams', [App\Http\Controllers\ExamController::class, 'index'])->name('exams.index');
