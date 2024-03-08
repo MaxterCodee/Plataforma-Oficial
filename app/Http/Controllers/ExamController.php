@@ -11,4 +11,8 @@ class ExamController extends Controller
     {
         return view('exams.index');
     }
+    public function create()
+    {
+        return view('exams.create');
+    }
 }
