@@ -14,10 +14,7 @@
             @csrf
               
             
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="submit" class="btn btn-primary" id="saveExamButton">Guardar</button>
-            </div>
+            
                 <!-- Aquí se agregarán los campos del formulario -->
             </form>
             <br>
@@ -25,7 +22,10 @@
             <button id="quitarPregunta" class="btn btn-danger">Quitar Pregunta</button>
         </div>
       </div>
-      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary" id="saveExamButton">Guardar</button>
+      </div>
     </div>
   </div>
 </div>
@@ -33,6 +33,12 @@
 <!-- Incluye jQuery y Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+  $('#saveExamButton').click(function(e) {
+e.preventDefault();
+$('#formulario').submit();
+});
+</script>
 <script>
   $('#formulario').append('<div class="form-group"><label for="EXaname">Nombre del examen:</label><input type="text" class="form-control form-control-sm" id="EXaname" name="EXaname"></div><br>');
 $(document).ready(function() {
