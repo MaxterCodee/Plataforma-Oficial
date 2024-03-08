@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('status')->default(0);
             $table->integer('per_week')->default(0)->nullable();
             $table->integer('per_course')->default(0)->nullable();
-            $table->unsignedBigInteger('course_id');
+            $table->unsignedBigInteger('course_id')->nullable();
             $table->unsignedBigInteger('week_id')->nullable();
             $table->timestamps();
 
