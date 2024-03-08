@@ -54,6 +54,8 @@ Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])-
 //Rutas pata afministrar examenes
 Route::get('/exams', [App\Http\Controllers\ExamController::class, 'index'])->name('exams.index');
 Route::post('/exams', [App\Http\Controllers\ExamController::class, 'store'])->name('exams.store');
+Route::put('/exams/{id}', [App\Http\Controllers\ExamController::class, 'update'])->name('exams.update');
+Route::delete('/exams/{id}', [App\Http\Controllers\ExamController::class, 'destroy'])->name('exams.destroy');
 //ruta para administrar tests
 Route::get('/tests', [App\Http\Controllers\TestController::class, 'index'])->name('tests.index');
 require __DIR__.'/auth.php';

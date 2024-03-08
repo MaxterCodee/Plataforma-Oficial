@@ -10,5 +10,7 @@
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createExamModal">
         Crear Examen
       </button>
+      
       @include('Mod\CrearExamen')
+ 
 </x-app-layout>

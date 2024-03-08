@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="createExamModal" tabindex="-1" role="dialog" aria-labelledby="createExamModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -10,8 +9,9 @@
       </div>
       <div class="modal-body">
         <div class="container">
-            <form id="formulario" action="procesar.php" method="post">
-              
+            
+              <form  id = "formulario" action="{{ route('exams.store') }}" method="post" enctype="multipart/form-data">
+                @csrf 
                 <!-- Aquí se agregarán los campos del formulario -->
             </form>
             <br>
@@ -60,6 +60,22 @@
         if (contadorCasillas > 0) {
             grupo.find('#casilla' + contadorCasillas + '_' + idGrupo).remove();
         }
+    });
+    
+    $('#saveExamButton').click(function(e) {
+        e.preventDefault();
+        var datosDelFormulario = $('#formulario').serialize(); // Serializas los datos del formulario
+
+        // Crear un nuevo examen
+        $.ajax({
+            url: '/exams',
+            type: 'POST',
+            data: datosDelFormulario,
+            success: function(response) {
+                // Aquí puedes manejar la respuesta del servidor
+                // Por ejemplo, podrías cerrar el modal y actualizar la lista de exámenes
+            }
+        });
     });
 });
 </script>
