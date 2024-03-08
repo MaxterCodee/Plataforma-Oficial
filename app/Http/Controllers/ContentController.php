@@ -31,6 +31,43 @@ public function week()
 }
 // Obtener la semana asociada
 
+public function upload(Request $request)
+{
+    // if($request->hasFile('upload')){
+    //    $originName = $request->file('upload')->getClientOriginalName(); 
+    //    $name = pathinfo($originName, PATHINFO_FILENAME);
+    //    $extension = $request->file('upload')->getClientOriginalExtension();
+    //    $fileName = $name.'_'.time().'.'.$extension;
+        
+    //    $request->file('upload')->move(public_path('images'), $fileName);  
+    
+    //      $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+    //         $url = asset('images/'.$fileName); 
+    //         $message = 'Archivo subido correctamente';
+    //         $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$message')</script>";
+    //         @header('content-type: text/html; charset=utf-8');
+    //         echo $response;
+    //     }
+    if($request->hasFile('upload')){
+           $originName = $request->file('upload')->getClientOriginalName(); 
+           $name = pathinfo($originName, PATHINFO_FILENAME);
+           $extension = $request->file('upload')->
+           getClientOriginalExtension();
+
+           $fileName = $name.'_'.time().'.'.$extension;
+            
+           $request->file('upload')->move(public_path('images'), $fileName);  
+        
+           
+                $url = asset('images/'.$fileName); 
+                
+                return response()->json(['fileName'=>$fileName, 'uploaded'=>1, 'url'=>$url]);
+    }
+            
+
+
+}
+
 public function store(Request $request)
 {
     $request->validate([

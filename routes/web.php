@@ -65,6 +65,7 @@ Route::post('/lessons', [App\Http\Controllers\LessonController::class, 'store'])
 // rutas para contenido
 Route::get('/content/{lesson}', [App\Http\Controllers\ContentController::class, 'index'])->name('content.index');
 Route::post('/content', [App\Http\Controllers\ContentController::class, 'store'])->name('content.store');
+Route::post('/upload', [App\Http\Controllers\ContentController::class, 'upload'])->name('content.upload');//ver si se le puede cambiar nombre ya lueguito <3
 
 //Rutas pata afministrar examenes
 Route::get('/exams', [App\Http\Controllers\ExamController::class, 'index'])->name('exams.index');
