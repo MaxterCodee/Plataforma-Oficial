@@ -57,7 +57,7 @@ public function edit($id)
 {
     $exam = Exam::find($id);
     // Aquí puedes pasar el examen a tu vista de edición
-    return view('exams.update', compact('exam'));
+    return view('exams.index', compact('exam'));
 }
 
 public function destroy($id)
@@ -82,6 +82,33 @@ public function destroy($id)
     return redirect()->route('exams.index');
 }
 
+public function update(Request $request, $id)
+{
+    // Encuentra el examen en la base de datos usando el id
+    $exam = Exam::find($id);
+
+    // Actualiza los campos del examen con los datos del formulario
+    $exam->title = $request->input('EXaname');
+    $exam->course_id = $request->input('course_id');
+    $exam->save();
+
+    // Actualiza las preguntas y respuestas
+    foreach ($request->input('preguntas') as $pregunta) {
+        $question = Question::find($pregunta['id']); // Encuentra la pregunta en la base de datos
+        $question->ask = $pregunta['pregunta'];
+        $question->save();
+
+        foreach ($pregunta['respuestas'] as $respuesta) {
+            $answer = Answer::find($respuesta['id']); // Encuentra la respuesta en la base de datos
+            $answer->option = $respuesta['option'];
+            $answer->GoodOpci = isset($respuesta['GoodOpci']) && $respuesta['GoodOpci'] == 'on' ? 1 : 0;
+            $answer->save();
+        }
+    }
+
+    // Redirige al usuario a la página de índice después de actualizar el examen
+    return redirect()->route('exams.index');
+}
 
 
 }
