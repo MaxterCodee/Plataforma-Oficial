@@ -73,3 +73,9 @@ Route::get('/exams', [App\Http\Controllers\ExamController::class, 'index'])->nam
 //ruta para administrar tests
 Route::get('/tests', [App\Http\Controllers\TestController::class, 'index'])->name('tests.index');
 require __DIR__.'/auth.php';
+
+
+// ruta para probar ckeditor
+Route::get('/ckeditor', function () {
+    return view('lessons/ckeditor');
+});
