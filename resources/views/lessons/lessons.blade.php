@@ -40,7 +40,7 @@
                 @foreach ($lesson->contents as $content)
                 <div id="content{{ $content->id }}" class="card mt-3 mx-3 col-md-11.5" style="margin-bottom: 15px;">
                     <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-muted">Tema: {{ $content->number }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Tema {{ $content->number }}: {{ $content->title }}</h6>
                        
                         <div class="card-text">{!! $content->markdown !!}</div>
                     </div>

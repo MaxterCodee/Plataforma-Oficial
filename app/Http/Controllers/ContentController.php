@@ -31,64 +31,69 @@ public function week()
 }
 // Obtener la semana asociada
 
-public function upload(Request $request)
-{
+// public function upload(Request $request)
+// {
    
-    if($request->hasFile('upload')){
-           $originName = $request->file('upload')->getClientOriginalName(); 
-           $name = pathinfo($originName, PATHINFO_FILENAME);
-           $extension = $request->file('upload')->
-           getClientOriginalExtension();
+//     if($request->hasFile('upload')){
+//            $originName = $request->file('upload')->getClientOriginalName(); 
+//            $name = pathinfo($originName, PATHINFO_FILENAME);
+//            $extension = $request->file('upload')->
+//            getClientOriginalExtension();
 
-           $fileName = $name.'_'.time().'.'.$extension;
+//            $fileName = $name.'_'.time().'.'.$extension;
             
-           $request->file('upload')->move(public_path('images'), $fileName);  
+//            $request->file('upload')->move(public_path('images'), $fileName);  
         
            
-                $url = asset('images/'.$fileName); 
+//                 $url = asset('images/'.$fileName); 
                 
-                return response()->json(['fileName'=>$fileName, 'uploaded'=>1, 'url'=>$url]);
-    }
+//                 return response()->json(['fileName'=>$fileName, 'uploaded'=>1, 'url'=>$url]);
+//     }}
             
 
 
-}
+
 
 public function store(Request $request)
 {
     $request->validate([
-        'number' => 'required',
+        'title' => 'required',
         'markdown' => 'required',
         'lesson_id' => 'required',
     ]);
 
     // Obtener la lección asociada
     $lesson = Lesson::findOrFail($request->get('lesson_id'));
-    $week = Week::findOrFail($lesson->week()->first()->id);
 
-    
-    Content::create([
-        'number' => $request->number,
-        'markdown' => $request->markdown,
-        'lesson_id' => $lesson->id,
-    ]);
+
+  // Obtener el último número de contenido para la lección actual
+$lastContent = Content::where('lesson_id', $lesson->id)
+->orderBy('number', 'desc')
+->first();
+
+// Determinar el nuevo número de contenido
+$newNumber = $lastContent ? $lastContent->number + 0.1 : $lesson->number + 0.1;
 
 
     // Crear y guardar el nuevo contenido
-    // $content = new Content();
-    // $content->number = $request->get('number');
-    // $content->markdown = $request->get('markdown');
+    // Content::create([
+    //     'number' => $newNumber,
+    //     // 'title' => $request->input('title'),
+    //     // 'title' => $request->title,
+    //     'markdown' => $request->markdown,
+    //     'lesson_id' => $lesson->id,
+    // ]);
 
-    // Asignar la lección asociada
-    // $content->lesson()->associate($lesson);
-    // // Asignar la semana asociada
-    // $lesson->week()->associate($week);
-
-    // $content->save(); // Save the content, not the lesson
-
+    $content = new Content();
+    $content->number = $newNumber;
+    $content->title = $request->get('title'); 
+    $content->markdown = $request->get('markdown');
+    $content->lesson_id = $lesson->id;
+    $content->save();
+                 
+   
     return redirect()->route('content.index', ['lesson' => $lesson->id])
-                 ->with('success', 'Content created successfully');
-
+                     ->with('success', 'Content created successfully');
 }
 
 

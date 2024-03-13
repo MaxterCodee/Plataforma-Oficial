@@ -20,22 +20,33 @@
                     <!-- Campo de carga de archivos para el archivo de la carrera -->
                     <div class="mb-3">
                         <label for="archivoCurso" class="form-label">descripcion del curso</label>
-                        <textarea class="form-control"name="description" id="description" rows="3"></textarea>
+                        <textarea class="form-control"name="description" id="editor"  rows="5" cols="50"></textarea>
                     </div>
 
                     <div class="mb-3">
-                      <label for="fechaExpiracion" class="form-label">Fecha de Expiración:</label>
-                      <input type="date" name="expiration_date" class="form-control" id="fechaExpiracion">
+                        <label for="course_objectives" class="form-label">objetivos del curso</label>
+                        
+                        <textarea class="form-control" id="editor1" name="course_objectives" rows="5" cols="50"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="start_date" class="form-label">Fecha de inicio:</label>
+                        <input type="date" name="start_date" class="form-control" id="start_date">
+                    </div>
+                    
+                    <div class="mb-3">
+                      <label for="expiration_date" class="form-label">Fecha de Expiración:</label>
+                      <input type="date" name="expiration_date" class="form-control" id="expiration_date">
                   </div>
                   <div class="mb-3">
                     <label for="estado" class="form-label">Estado:</label>
                     <input type="number" name="status" id="statusCourse">
                 </div>
-                <div class="mb-3">
-                  <label for="urlImagen" class="form-label">URL de la Imagen:</label>
-                  <input type="text" name="image_url" class="form-control" id="urlImagen" placeholder="Ingrese la URL de la imagen">
-              </div>
 
+                <div class="mb-3">
+                <label for="cargarImagen" class="form-label">Cargar Imagen:</label>
+                 <input type="file" name="image_upload" class="form-control" id="cargarImagen">
+                </div>
                     <!-- Botones de acción -->
                     <div class="modal-footer">
                         <!-- Botón de cancelar -->
@@ -49,3 +60,32 @@
         </div>
     </div>
 </div>
+
+<script src="/ckeditor5/build/ckeditor.js"></script> 
+ <script>
+    // Espera a que el DOM esté completamente cargado
+    document.addEventListener("DOMContentLoaded", function() {
+        // Inicializa CKEditor
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                console.log('Editor initialized:', editor);
+            })
+            .catch(error => {
+                console.error('Error initializing editor:', error);
+            });
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Inicializa CKEditor
+        ClassicEditor
+            .create(document.querySelector('#editor1'))
+            .then(editor => {
+                console.log('Editor initialized:', editor);
+            })
+            .catch(error => {
+                console.error('Error initializing editor:', error);
+            });
+    });
+</script> 

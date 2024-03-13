@@ -157,7 +157,7 @@
       <div class="col-md-9 ml-md-auto col-lg-10 px-4">
         <!-- Contenido principal de tu página aquí -->
         <br>
-        <div class="navbar navbar-expand-lg navbar-light bg-color">
+        {{-- <div class="navbar navbar-expand-lg navbar-light bg-color">
             <a class="navbar-brand" href="#">&nbsp;&nbsp; Mi Sitio</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -178,7 +178,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> --}}
 
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}

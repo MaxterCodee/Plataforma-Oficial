@@ -10,10 +10,7 @@
                 <!-- Formulario para la creación de lecciones -->
                 <form action="{{ route('lessons.store') }}" method="POST">
                     @csrf
-                    <div class="mb-3">
-                        <label for="number" class="form-label">Número de Lección</label>
-                        <input type="text" class="form-control" id="number" name="number" required>
-                    </div>
+                    
                     <div class="mb-3">
                         <label for="name" class="form-label">nombre de Lección</label>
                         <input type="text" class="form-control" id="name" name="name" required>

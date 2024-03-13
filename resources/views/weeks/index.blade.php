@@ -1,3 +1,37 @@
+<?php
+$startDate = new \DateTimeImmutable($course->start_date);
+$expirationDate = new \DateTimeImmutable($course->expiration_date);
+
+// Calcula la diferencia en semanas
+$interval = $startDate->diff($expirationDate);
+$durationInWeeks = ceil($interval->days / 7);
+
+// Array para almacenar los rangos de fechas de cada semana
+$weekDateRanges = [];
+
+for ($i = 1; $i <= $durationInWeeks; $i++) {
+    // Para la primera semana, inicia en la fecha de inicio del curso
+    if ($i === 1) {
+        $weekStartDate = $startDate;
+    } else {
+        // Para las demás semanas, inicia en el próximo lunes
+        $weekStartDate = $startDate->add(new DateInterval('P' . (($i - 2) * 7 + 7) . 'D'));
+    }
+
+    // Para la última semana, termina en la fecha de cierre del curso
+    $weekEndDate = min($expirationDate, $weekStartDate->modify('next Sunday')->setTime(23, 59, 59));
+
+    $weekDateRanges[] = [
+        'week_number' => $i,
+        'start_date' => $weekStartDate->format('Y-m-d'),
+        'end_date' => $weekEndDate->format('Y-m-d'),
+    ];
+}
+
+// Imprime el array de rangos de fechas
+// print_r($weekDateRanges);
+?>
+
 <x-app-layout>
     <br>
     <nav aria-label="breadcrumb">
@@ -7,68 +41,92 @@
         </ol>
       </nav>
 
-      <h1>Semanas del curso: {{ $course->name }}</h1>
-      <!-- Botón para abrir el modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createWeekModal">
-  Create Week
-</button>
-
-<!-- Modal para la creación de semanas -->
-<div class="modal fade" id="createWeekModal" tabindex="-1" aria-labelledby="createWeekModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="createWeekModalLabel">Create Week</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <!-- Formulario para la creación de semanas -->
-              <form action="{{ route('weeks.store') }}" method="POST">
-                  @csrf
-                  <div class="mb-3">
-                      <label for="numero" class="form-label">Week Number</label>
-                      <input type="text" class="form-control" id="numero" name="number" required>
-                  </div>
-                  <div class="mb-3">
-                      <label for="descripcion" class="form-label">Description</label>
-                      <textarea class="form-control" id="description" name="description" required></textarea>
-                  </div>
-                  <!-- No es necesario un campo para el course_id ya que se asignará automáticamente -->
-
-                  <input type="hidden" name="course_id" value="{{ $course->id }}">
-
-                  <button type="submit" class="btn btn-primary">Create Week</button>
-              </form>
-          </div>
-      </div>
-  </div>
-</div>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
-<div class="container">
-  
-  <div class="row mt-4">
-    @foreach($weeks as $week)
-    <div class="col-md-4 mb-4">
-        <a href="{{ route('lessons.index', ['week' => $week->id]) }}" style="text-decoration: none; color: inherit;">
-            <div class="card">
-                <!-- Contenedor para la imagen con dimensiones específicas -->
-                <div class="image-container" style="width: 100%; height: 150px; overflow: hidden;">
-                    <img src="{{ $week->image_url }}" class="card-img-top img-fluid" alt="Imagen de la semana">
-                </div>
+<header>
+    <div class="card-body d-flex align-items-center mb-2" style="background-color: #94c4f5;">
+        <div class="col-4 d-flex align-items-center" style="margin-left: -10px; padding: 10px;">
+            @php
+                $imageUrl = $course->image_url ? asset($course->image_url) : asset('path/to/default/image.jpg');
+            @endphp
+            <img src="{{ $imageUrl }}" alt="Imagen del curso" class="img-fluid" style="height: 100%; object-fit: cover;">
+        </div>
+        <div class="col-4" style="margin-left: -150px; " >
+            <h1 style="font-size: 1.75em;">{{ $course->name }}</h1>
+         
+        </div>
 
-                <div class="card-body">
-                    <h5 class="card-title">Week {{ $week->number }}</h5>
-                    <p class="card-text">{{ $week->description }}</p>
-                    <p class="card-text">Course: {{ $week->course->name }}</p>
-                    <!-- Puedes mostrar más detalles según tus necesidades -->
-                    <a href="#" class="btn btn-primary">Ver Detalles</a>
-                </div>
-            </div>
-        </a>
+        <div class="col-4" style="background-color: #fbfbfb; border-radius: 10px; height: 50%; width: 500px; margin-left: -5px; padding: 20px;">
+            <p>{{ $course->start_date }} -> {{ $course->expiration_date }}</p>
+        </div>
+        
     </div>
-    @endforeach
+</header>
+
+<!-- Modal para Enfoque -->
+<div class="modal fade" id="enfoqueModal" tabindex="-1" role="dialog" aria-labelledby="enfoqueModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="enfoqueModalLabel">Enfoque</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="card-text">{!! $course->description  !!}</div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Modal para Objetivos -->
+<div class="modal fade" id="objetivosModal" tabindex="-1" role="dialog" aria-labelledby="objetivosModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="objetivosModalLabel">Objetivos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card-text">{!! $course->course_objectives  !!}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Botones para abrir los modales -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-1">
+            
+            <button class="btn btn-primary" data-toggle="modal" data-target="#enfoqueModal">
+                Enfoque
+            </button>
+        </div>
+        <div class="col-md-1">
+           
+            <button class="btn btn-primary" data-toggle="modal" data-target="#objetivosModal">
+                Objetivos
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+@include('weeks.emptyWeeks')
+@include('weeks.weekFill')
+
+
+
+
 
 
 </x-app-layout>

@@ -27,30 +27,36 @@ public function content()
     return $this->hasOne(Content::class);
 }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'number' => 'required',
-            'name' => 'required',
-            'description' => 'required',
-            'week_id' => 'required', // Asegúrate de tener el campo week_id en tu tabla de lecciones
-        ]);
+public function store(Request $request)
+{
+    // Obtener el último número de lección
+    $lastLesson = Lesson::where('week_id', $request->get('week_id'))->orderBy('number', 'desc')->first();
 
-        // Obtener la semana asociada
-        $week = Week::findOrFail($request->get('week_id'));
+    // Determinar el nuevo número de lección
+    $newNumber = $lastLesson ? $lastLesson->number + 1 : 1;
+    // dd($newNumber);
+    // dd($newNumber, $lastLesson, $lastLesson->week_id, $request->get('week_id'));
+    $request->validate([
+        'name' => 'required',
+        'description' => 'required',
+        'week_id' => 'required',
+    ]);
 
-        // Crear y guardar la nueva lección
-        $lesson = new Lesson();
-        $lesson->number = $request->get('number');
-        $lesson->name = $request->get('name');
-        $lesson->description = $request->get('description');
+    // Obtener la semana asociada
+    $week = Week::findOrFail($request->get('week_id'));
 
-        // Asignar la semana asociada
-        $lesson->week()->associate($week);
+    // Crear y guardar la nueva lección
+    $lesson = new Lesson();
+    $lesson->number = $newNumber; // Asignar el nuevo número de lección
+    $lesson->name = $request->get('name');
+    $lesson->description = $request->get('description');
 
-        $lesson->save();
+    // Asignar la semana asociada
+    $lesson->week()->associate($week);
 
-        return redirect()->route('lessons.index', ['week' => $week->id])
-                         ->with('success', 'Lesson created successfully');
-    }
+    $lesson->save();
+
+    return redirect()->route('lessons.index', ['week' => $week->id])
+                     ->with('success', 'Lección creada exitosamente');
+}
 }
