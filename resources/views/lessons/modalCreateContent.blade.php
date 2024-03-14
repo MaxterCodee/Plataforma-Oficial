@@ -15,7 +15,6 @@
                     <div class="mb-3">
                         <label for="title" class="form-label">titulo del tema</label>
                         <input type="text" class="form-control" id="title" name="title" required>
-
                     </div>
 
                     <div class="mb-3">

@@ -16,8 +16,10 @@ class ContentController extends Controller
         $content = $lesson->content;
         $week = Week::findOrFail($lesson->week()->first()->id);
         $lessons = $week->lessons;
+
+        
     
-        return view('lessons.index', compact('lesson', 'content', 'lessons' ,'week'));
+        return view('lessons.contentCreate', compact('lesson', 'content', 'lessons' ,'week'));
     }
 
     public function lesson()
@@ -92,7 +94,7 @@ $newNumber = $lastContent ? $lastContent->number + 0.1 : $lesson->number + 0.1;
     $content->save();
                  
    
-    return redirect()->route('content.index', ['lesson' => $lesson->id])
+    return redirect()->route('lessons.index', ['week' => $lesson->week->id])
                      ->with('success', 'Content created successfully');
 }
 

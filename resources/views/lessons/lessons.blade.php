@@ -27,9 +27,16 @@
                 <div class="card-body">
                     <!-- Botón para agregar contenido -->
                     <div>
-                    <button type="button" class="btn btn-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#addContentModal{{ $lesson->id }}">
+                    {{-- <button type="button" class="btn btn-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#addContentModal{{ $lesson->id }}">
                         Agregar Contenido
-                    </button>
+                    </button> --}}
+
+                    <a href="{{ route('content.index', ['lesson' => $lesson->id]) }}" class="btn btn-success btn-sm float-end">
+                        Agregar Contenido
+                    </a>
+                    
+                    
+
                     @include('lessons.modalCreateContent')
                     </div>
 
