@@ -197,7 +197,24 @@
             'CaseChange'
         ]
     });
+
+
+    $(document).ready(function() {
+        $('.play-video-button').click(function() {
+            var contentId = $(this).data('content-id');
+            var content = $('#content' + contentId + ' .card-text').html();
+            var match = /<a.*?href="([^"]+)".*?>.*?<\/a>/i.exec(content);
+            
+            if (match && match[1]) {
+                var videoUrl = match[1];
+                $('#video-container').html('<video controls><source src="' + videoUrl + '" type="video/mp4"></video>');
+            } else {
+                alert('No se ha encontrado ningún enlace de video en este contenido.');
+            }
+        });
+    });
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  
 
 

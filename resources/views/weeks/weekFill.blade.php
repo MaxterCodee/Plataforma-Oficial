@@ -15,9 +15,8 @@
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title">Week {{ $week->number }}</h5>
-                            <p class="card-text">{{ $week->week_name }}</p>
-                            <p class="card-text">curso: {{ $week->course->name }}</p>
+                            <h5 class="card-title">Week {{ $week->number }} :  {{ $week->course->name }}</h5>
+                            <p class="card-text">start: {{ $week->start_date }} <br> end: {{ $week->end_date }} </p>
                         </div>
                     </div>
                 </a>
