@@ -5,43 +5,47 @@ namespace App\Http\Controllers;
 use App\Models\Week;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\SatisfactionQuestion;
 
-class weekController extends Controller
-{
+class weekController extends Controller{
+
     public function index($courseId)
-{
-    $course = Course::findOrFail($courseId);
-    $weeks = $course->weeks;
+    {
+        $questions = SatisfactionQuestion::all();
+        $course = Course::findOrFail($courseId);
+        $weeks = $course->weeks;
 
-    return view('weeks.index', compact('course', 'weeks'));
-}
-public function course()
-{
-    return $this->belongsTo(Course::class);
-}
-public function store(Request $request)
-{
-    $request->validate([
-        'number' => 'required',
-        'description' => 'required',
-    ]);
+        return view('weeks.index', compact('course', 'weeks','questions'));
+    }
 
-    // Obtener el curso asociado
-    $course = Course::findOrFail($request->get('course_id'));
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 
-    // Crear y guardar la nueva semana
-    $week = new Week();
-    $week->number = $request->get('number');
-    $week->description = $request->get('description');
+    public function store(Request $request)
+    {
+        $request->validate([
+            'number' => 'required',
+            'description' => 'required',
+        ]);
 
-    // Asignar el curso asociado
-    $week->course()->associate($course);
+        // Obtener el curso asociado
+        $course = Course::findOrFail($request->get('course_id'));
 
-    $week->save();
+        // Crear y guardar la nueva semana
+        $week = new Week();
+        $week->number = $request->get('number');
+        $week->description = $request->get('description');
 
-    return redirect()->route('weeks.index', ['course' => $course->id])
-                     ->with('success', 'Week created successfully');
-}
+        // Asignar el curso asociado
+        $week->course()->associate($course);
+
+        $week->save();
+
+        return redirect()->route('weeks.index', ['course' => $course->id])
+                        ->with('success', 'Week created successfully');
+    }
 
 
 

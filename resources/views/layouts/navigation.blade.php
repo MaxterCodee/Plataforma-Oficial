@@ -1,11 +1,3 @@
-<style>
-    .bg-color {
-    background-color: #A7102E; /* Reemplaza RR, GG y BB con los valores hexadecimales de tu color deseado */
-    border-radius: 10px; /* Puedes ajustar el valor según la cantidad de redondeo que desees */
-
-}
-</style>
-
 <div class="container-fluid">
     <div class="row">
       <!-- Barra lateral -->
