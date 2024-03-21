@@ -18,6 +18,7 @@ class CourseController extends Controller
         $courses = Course::all();
         return view('courses.index', compact('courses'));
     }
+    
 
     
 
@@ -151,6 +152,7 @@ class CourseController extends Controller
 
     return redirect()->route('courses.index')->with('success', 'Curso actualizado con éxito');
 }
+
 
 public function destroy($id)
 {

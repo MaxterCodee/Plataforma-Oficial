@@ -1,132 +1,66 @@
-<!DOCTYPE html><!--
-	Copyright (c) 2014-2024, CKSource Holding sp. z o.o. All rights reserved.
-	This file is licensed under the terms of the MIT License (see LICENSE.md).
--->
-
-<html lang="en" dir="ltr">
-	<head>
-		<title>CKEditor 5 ClassicEditor build</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" type="image/png" href="https://c.cksource.com/a/1/logos/ckeditor5.png">
-		<link rel="stylesheet" type="text/css" href="styles.css">
-	</head>
-	<body data-editor="ClassicEditor" data-collaboration="false" data-revision-history="false">
-		<header>
-			<div class="centered">
-				<h1><a href="https://ckeditor.com/ckeditor-5/" target="_blank" rel="noopener noreferrer"><img src="https://c.cksource.com/a/1/logos/ckeditor5.svg" alt="CKEditor 5 logo">CKEditor 5</a></h1>
-				<nav>
-					<ul>
-						<li><a href="https://ckeditor.com/docs/ck	editor5/" target="_blank" rel="noopener noreferrer">Documentation</a></li>
-						<li><a href="https://ckeditor.com/" target="_blank" rel="noopener noreferrer">Website</a></li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-		<div class="message">
-			<div class="centered">
-				<h2>CKEditor 5 online builder demo - ClassicEditor build</h2>
-			</div>
-		</div>
-		<div class="centered">
-			<div class="row row-editor">
-				<div class="editor-container">
-					<div class="editor">
-						<h2>Bilingual Personality Disorder</h2>
-						<figure class="image image-style-side"><img src="https://c.cksource.com/a/1/img/docs/sample-image-bilingual-personality-disorder.jpg">
-							<figcaption>One language, one person.</figcaption>
-						</figure>
-						<p>
-							This may be the first time you hear about this made-up disorder but
-							it actually isn’t so far from the truth. Even the studies that were conducted almost half a century show that
-							<strong>the language you speak has more effects on you than you realize</strong>.
-						</p>
-						<p>
-							One of the very first experiments conducted on this topic dates back to 1964.
-							<a href="https://www.researchgate.net/publication/9440038_Language_and_TAT_content_in_bilinguals">In the experiment</a>
-							designed by linguist Ervin-Tripp who is an authority expert in psycholinguistic and sociolinguistic studies,
-							adults who are bilingual in English in French were showed series of pictures and were asked to create 3-minute stories.
-							In the end participants emphasized drastically different dynamics for stories in English and French.
-						</p>
-						<p>
-							Another ground-breaking experiment which included bilingual Japanese women married to American men in San Francisco were
-							asked to complete sentences. The goal of the experiment was to investigate whether or not human feelings and thoughts
-							are expressed differently in <strong>different language mindsets</strong>.
-							Here is a sample from the the experiment:
-						</p>
-						<table>
-							<thead>
-								<tr>
-									<th></th>
-									<th>English</th>
-									<th>Japanese</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Real friends should</td>
-									<td>Be very frank</td>
-									<td>Help each other</td>
-								</tr>
-								<tr>
-									<td>I will probably become</td>
-									<td>A teacher</td>
-									<td>A housewife</td>
-								</tr>
-								<tr>
-									<td>When there is a conflict with family</td>
-									<td>I do what I want</td>
-									<td>It's a time of great unhappiness</td>
-								</tr>
-							</tbody>
-						</table>
-						<p>
-							More recent <a href="https://books.google.pl/books?id=1LMhWGHGkRUC">studies</a> show, the language a person speaks affects
-							their cognition, behaviour, emotions and hence <strong>their personality</strong>.
-							This shouldn’t come as a surprise
-							<a href="https://en.wikipedia.org/wiki/Lateralization_of_brain_function">since we already know</a> that different regions
-							of the brain become more active depending on the person’s activity at hand. Since structure, information and especially
-							<strong>the culture</strong> of languages varies substantially and the language a person speaks is an essential element of daily life.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<footer>
-			<p><a href="https://ckeditor.com/ckeditor-5/" target="_blank" rel="noopener">CKEditor 5</a>
-				– Rich text editor of tomorrow, available today
-			</p>
-			<p>Copyright © 2003-2024,
-				<a href="https://cksource.com/" target="_blank" rel="noopener">CKSource</a>
-				Holding sp. z o.o. All rights reserved.
-			</p>
-		</footer>
-		
-	</body>
-</html>	
-
- <!-- Script para inicializar CKEditor -->
- <script src="/ckeditor5/build/ckeditor.js"></script> 
- <script>
-    ClassicEditor
-	.create( document.querySelector( '.editor' ), {
-		// Editor configuration.
-	} )
-	.then( editor => {
-		window.editor = editor;
-	} )
-	.catch( handleSampleError );
-
-function handleSampleError( error ) {
-	const issueUrl = 'https://github.com/ckeditor/ckeditor5/issues';
-
-	const message = [
-		'Oops, something went wrong!',
-		`Please, report the following error on ${ issueUrl } with the build id "pwlg7t7st4r1-nohdljl880ze" and the error stack trace:`
-	].join( '\n' );
-
-	console.error( message );
-	console.error( error );
-}
-
- </script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curso de ChatGPT</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+    .header {
+        background-color: #6A1B9A; /* Fondo morado */
+        color: white;
+        padding: 20px 0;
+    }
+    .breadcrumb {
+        font-size: 14px;
+    }
+    .course-title {
+        font-size: 24px;
+        font-weight: bold;
+    }
+		.info-card {
+			background-color: #fff;
+			color: #333;
+			padding: 10px;
+			border-radius: 5px;
+    }
+    .info-card .icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header row">
+            <div class="col-md-8">
+                <div class="breadcrumb">Programación > Cursos de Lógica de Programación</div>
+                <div class="course-title">Curso de ChatGPT: optimizando la calidad de los resultados</div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <img src="clock-icon.png" class="icon" alt="Carga Horaria">
+                            <div>Carga Horaria 8h</div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <img src="star-icon.png" class="icon" alt="Evaluación">
+                            <div>Evaluación 9.2</div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <img src="update-icon.png" class="icon" alt="Última actualización">
+                            <div>Última actualización 15/3/24</div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <img src="people-icon.png" class="icon" alt="Alumnos en este curso">
+                            <div>Alumnos en este curso 76</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

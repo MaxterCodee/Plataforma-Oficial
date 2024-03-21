@@ -1,3 +1,6 @@
+@if($courses->isEmpty())
+    <p>No hay cursos disponibles.</p>
+@else
 @foreach($courses as $course)
 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
     <div class="card shadow" style="height: 200px; display: flex; flex-direction: column; justify-content: center;">
@@ -39,7 +42,9 @@
 @endforeach
 
 
-@include('courses.modalDestroy')
-@include('courses.modalUpdate')
+@include('courses.modalDestroy', ['course' => $course])
+@include('courses.modalUpdate', ['course' => $course])
+
+@endif
 
 
