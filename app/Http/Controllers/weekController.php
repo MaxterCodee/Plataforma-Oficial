@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Week;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use Carbon\Carbon;
+
 
 class weekController extends Controller
 {
@@ -16,44 +18,38 @@ class weekController extends Controller
         return view('weeks.index', compact('course', 'weeks'));
     }
 
-    public function store(Request $request)
+    public function createWeeksForCourse($startDate, $endDate, $courseId)
     {
-        $request->validate([
-            'number' => 'required',
+        $weeks = [];
+        $startDate = Carbon::parse($startDate); // Convertir la cadena de inicio a un objeto Carbon
+        $endDate = Carbon::parse($endDate); // Convertir la cadena de finalización a un objeto Carbon
 
-            'week_name' => 'required',
-            'description' => 'required',
-            'image_upload' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        $weekImages = glob(public_path('weeks_images/*'));
 
-        // Obtener el curso asociado
-        $course = Course::findOrFail($request->get('course_id'));
+        $weekNumber = 1;
+        while ($startDate->lte($endDate)) { // Ahora puedes usar ->lte() en objetos Carbon
+            // Seleccionar una imagen aleatoria para la semana
+            $randomImage = $weekImages[array_rand($weekImages)];
 
-        // Crear y guardar la nueva semana
-        $week = new Week();
-        $week->number = $request->get('number');
-        $week->week_name = $request->get('week_name');
-        $week->description = $request->get('description');
+            // Obtener el nombre del archivo de la ruta
+            $imageName = basename($randomImage);
 
-        if ($request->hasFile('image_upload')) {
-            $originName = $request->file('image_upload')->getClientOriginalName();
-            $name = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('image_upload')->getClientOriginalExtension();
+            // Construir la URL de la imagen
+            $imageUrl = asset('weeks_images/' . $imageName);
 
-            $fileName = $name . '_' . time() . '.' . $extension;
+            $weeks[] = [
+                'start_date' => $startDate->copy()->startOfWeek(),
+                'end_date' => $startDate->copy()->endOfWeek(),
+                'course_id' => $courseId,
+                'image_url' => $imageUrl,
+                'number' => $weekNumber,
+            ];
 
-            $request->file('image_upload')->move(public_path('weeks_images'), $fileName);
-
-            $url = asset('weeks_images/' . $fileName);
-            $week->image_url = $url;
+            $startDate->addWeek();
+            $weekNumber++;
         }
 
-        // Asignar el curso asociado
-        $week->course()->associate($course);
-        
-        $week->save();
-        
-        return redirect()->route('weeks.index', ['course' => $course->id])
-            ->with('success', 'Week created successfully');
+        Week::insert($weeks);
     }
 }
+

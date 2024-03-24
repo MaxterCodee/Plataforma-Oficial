@@ -19,12 +19,12 @@
 
                     <div class="mb-3">
                         <label for="descripcionCurso" class="form-label">Descripción del curso</label>
-                        <textarea class="form-control" name="description" id="descripcionCurso" rows="4" required>{{ $course->description }}</textarea>
+                        <textarea class="form-control" name="description" id="descripcionCurso{{$course->id}}" rows="4" required>{{ $course->description }}</textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="objetivosCurso" class="form-label">Objetivos del curso</label>
-                        <textarea class="form-control" name="course_objectives" id="objetivosCurso" rows="4" required>{{ $course->course_objectives }}</textarea>
+                        <textarea class="form-control" name="course_objectives" id="objetivosCurso{{$course->id}}" rows="4" required>{{ $course->course_objectives }}</textarea>
                     </div>
 
                     <div class="mb-3">
@@ -64,7 +64,7 @@
     document.addEventListener("DOMContentLoaded", function() {
         // Inicializa CKEditor
         ClassicEditor
-            .create(document.querySelector('#descripcionCurso'))
+            .create(document.querySelector('#descripcionCurso{{$course->id}}'))
             .then(editor => {
                 console.log('Editor initialized:', editor);
             })
@@ -74,7 +74,7 @@
 
         // Inicializa CKEditor
         ClassicEditor
-            .create(document.querySelector('#objetivosCurso'))
+            .create(document.querySelector('#objetivosCurso{{$course->id}}'))
             .then(editor => {
                 console.log('Editor initialized:', editor);
             })

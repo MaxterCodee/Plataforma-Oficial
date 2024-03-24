@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Week;
 use Carbon\Carbon;
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
-use Intervention\Image\Facades\Image;
 
 class CourseController extends Controller
 {
@@ -108,9 +104,9 @@ class CourseController extends Controller
         'image_upload' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
-    // Actualizar los campos del curso
     $course->fill($request->only(['name', 'description', 'course_objectives', 'start_date', 'expiration_date', 'status']));
 
+   
     if ($request->hasFile('image_upload')) {
         // Lógica para guardar la imagen del curso
         $originName = $request->file('image_upload')->getClientOriginalName(); 
@@ -160,7 +156,7 @@ public function destroy($id)
 
     // Eliminar las semanas asociadas al curso antes de eliminar el curso
     $course->weeks()->delete();
-
+    
     $course->delete();
     return redirect()->route('courses.index');
 }

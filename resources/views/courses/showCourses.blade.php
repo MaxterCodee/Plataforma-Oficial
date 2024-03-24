@@ -39,11 +39,9 @@
         </div>
     </div>
 </div>
-@endforeach
-
-
 @include('courses.modalDestroy', ['course' => $course])
 @include('courses.modalUpdate', ['course' => $course])
+@endforeach
 
 @endif
 

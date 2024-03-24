@@ -6,19 +6,21 @@
 <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
 
 
-
+{{-- header del curso (imagen/nombre/especificaciones) --}}
 <header>
     <div class="card-body d-flex align-items-center mb-2" style="background-color: #94c4f5; padding: 10px;">
         <div class="col-2 d-flex align-items-center">
+            {{-- seccion para la imagen del curso --}}
             @php
                 $imageUrl = $course->image_url ? asset($course->image_url) : asset('path/to/default/image.jpg');
             @endphp
             <img src="{{ $imageUrl }}" alt="Imagen del curso" class="img-fluid" style="height: 100%; object-fit: cover; margin-right: 10px;">
         </div>
+        {{-- seccion para el nombre del curso --}}
         <div class="col-5">
             <h1 style="font-size: 1.75em; margin: 0; text-align: left;">{{ $course->name }}</h1>
         </div>
-        
+    {{-- seccion de las especificaciones del curso --}}
         <div class="col-5">
             <div class="info-card" style="background-color: #fff; color: #333; padding: 10px; border-radius: 5px;">
                 <div class="row">
@@ -96,17 +98,18 @@
 <div class="container mt-0" style="margin-top: 2px;">
     <div class="row">
         <div class="col-md-1">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#enfoqueModal">
+            <button class="btn btn-primary mx-2" data-toggle="modal" data-target="#enfoqueModal" >
                 Enfoque
             </button>
         </div>
         <div class="col-md-1">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#objetivosModal">
+            <button class="btn btn-primary mx-4" data-toggle="modal" data-target="#objetivosModal">
                 Objetivos
             </button>
         </div>
     </div>
 </div>
+
 
 <div style="margin-top: 10px;">
     <h1>SEMANAS</h1>
