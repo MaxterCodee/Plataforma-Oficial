@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\weekController;
 use Illuminate\Support\Facades\Route;
+use PharIo\Manifest\RequiresElement;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,3 +80,5 @@ require __DIR__.'/auth.php';
 Route::get('/ckeditor', function () {
     return view('lessons/ckeditor');
 });
+
+require "../routes/emiliano.php";
