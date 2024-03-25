@@ -1,8 +1,103 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
 .btn-invisible {
     background: none;
     border: none;
     padding: 0;
     margin: 0;
+}
+
+
+
+.btn-invisible {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+$position-values: (
+0: 0,
+50: 50%,
+30: 30%,
+40: 40%,
+100: 100%,
+
+);
+
+$container-max-widths: (
+sm: 540px,
+md: 720px,
+lg: 960px,
+xl: 1140px,
+xxl: 1320px
+);
+
+
+.BgLogin{
+    background-image: url("https://www.liderempresarial.com/wp-content/uploads/2022/05/UPQ.jpg");
+    background-size: cover;
+
+    background-color: rgb(255, 255, 255);
+}
+
+
+
+.rating-wrapper {
+align-self: center;
+display: inline-flex;
+direction: rtl !important;
+margin-left: auto;
+
+
+label {
+color: #E1E6F6;
+cursor: pointer;
+display: inline-flex;
+font-size: 3rem;
+padding: 1rem .6rem;
+transition: color 0.5s;
+}
+
+svg {
+-webkit-text-fill-color: transparent;
+-webkit-filter: drop-shadow (4px 1px 6px rgba(198, 206, 237, 1));
+filter:drop-shadow(5px 1px 3px rgba(198, 206, 237, 1));
+}
+
+input {
+height: 100%;
+width: 100%;
+}
+
+input {
+display: none;
+}
+
+label:hover,
+label:hover ~ label,
+input:checked ~ label  {
+color: #34AC9E;
+}
+
+label:hover,
+label:hover ~ label,
+input:checked ~ label  {
+color: #34AC9E;
+}
 }

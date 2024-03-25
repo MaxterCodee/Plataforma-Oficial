@@ -17,10 +17,25 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
-        </div>
+
+    <body class="BgLogin">
+    
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div>
+                <div class="row justify-content-center">
+                    <div class="card bg-white rounded-4 border border-black">
+                        <div class="card-body d-flex flex-column mb-3 text-center">
+                            <a> <img class="ImagenLogin img-fluid mb-2 mt-2" src="img/logo.png" style="height:auto; width:320px"/> </a>
+                            
+                            {{$slot}}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        <div>
 
         @livewireScripts
     </body>
