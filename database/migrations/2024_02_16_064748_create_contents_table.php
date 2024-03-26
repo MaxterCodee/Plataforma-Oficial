@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('number');
             $table->longText('markdown');
             $table->unsignedBigInteger('lesson_id');
+            $table->string('title');
             $table->timestamps();
 
             $table->foreign('lesson_id')->references('id')->on('lessons');

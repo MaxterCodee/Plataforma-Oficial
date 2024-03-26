@@ -50,7 +50,7 @@
                             <li class="list-group-item">
                                 <div class="container-wrapper"> 
                                     <div class="d-flex">
-                                        <div class="col mt-4">
+                                        <div class="col py-4 pe-5">
                                             <span>{{$Question->question_content}}</span>
                                         </div>
 
@@ -69,6 +69,19 @@
                                 </div>
                             </li>
                         @endforeach
+                        <li class="list-group-item">
+                            <div class="container-wrapper"> 
+                                <div class="d-flex">
+                                    <div class="col mt-5">
+                                        <span>Comentarios Generales</span>
+                                    </div>
+                                    <div class="py-3 col-8">
+                                        <textarea class="form-control" id="commentary" rows="5" name="commentary" maxlength="250" ></textarea>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </li>
                     </ol>
                 </div>
                 <div class="modal-footer">

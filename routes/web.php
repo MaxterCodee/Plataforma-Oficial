@@ -17,7 +17,7 @@ use PharIo\Manifest\RequiresElement;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -80,5 +80,3 @@ require __DIR__.'/auth.php';
 Route::get('/ckeditor', function () {
     return view('lessons/ckeditor');
 });
-
-require "../routes/emiliano.php";
