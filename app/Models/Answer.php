@@ -12,7 +12,8 @@ class Answer extends Model
     protected $fillable = [
         'option',
         'is_correct',
-        'question_id'
+        'question_id',
+        'GoodOpci'
     ];
 
     public function question()

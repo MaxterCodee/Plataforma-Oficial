@@ -42,11 +42,11 @@
               <!-- Aquí puedes agregar más detalles del examen como prefieras -->
               <div class="d-flex justify-content-end">
                   <!-- Botón de editar -->
-                  <!-- Botón de editar -->
-                <!-- Botón de editar -->
+
 <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#editModal">
   Editar
 </button>
+
 @include('Mod\editarExamen')
 
 <!-- Botón de borrar -->

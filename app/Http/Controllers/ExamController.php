@@ -1,12 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
 use App\Models\Exam;
 use App\Models\Question;
 use Illuminate\Http\Request;
-
 
 class ExamController extends Controller
 {
@@ -16,7 +14,6 @@ class ExamController extends Controller
         $exams = Exam::all();
         return view('exams.index',compact('exams'));
     }
-    
     
 public function store(Request $request)
 {
@@ -45,70 +42,104 @@ public function store(Request $request)
 public function show($id)
 {
     $exam = Exam::find($id);
-    $questions = $exam->questions; // Obtiene las preguntas del examen
-
-    // Aquí puedes pasar el examen y las preguntas a tu vista
-    return view('exams.show', compact('exam', 'questions'));
+    if ($exam === null) {
+        
+        return redirect()->route('errorPage')->with('error', 'Examen no encontrado');
+    }
+    $questions = $exam->questions;
+    return view('exams.show', compact('exam', 'questions')); 
 }
-
-
-
 public function edit($id)
 {
     $exam = Exam::find($id);
-    // Aquí puedes pasar el examen a tu vista de edición
-    return view('exams.index', compact('exam'));
+    if ($exam) {
+        $questions = $exam->questions; // Obtiene las preguntas del examen
+        return view('exams.edit', ['exam' => $exam, 'questions' => $questions]); // Pasa el examen y las preguntas a la vista
+    } else {
+        // Redirige a una página de error o muestra un mensaje de error
+        return redirect()->route('errorPage')->with('error', 'Examen no encontrado');
+    }
+}
+
+public function update(Request $request, $id)
+{
+    
+    $exam = Exam::find($id);
+    
+    $exam->title = $request->input('EXaname');
+    $exam->course_id = $request->input('course_id');
+    $exam->save();
+    
+    foreach ($request->input('questions') as $question_id => $question_data) {
+        $question = Question::find($question_id); 
+        $question->ask = $question_data['pregunta'];
+        $question->save();
+        foreach ($question_data['respuestas'] as $answer_id => $answer_data) {
+            $answer = Answer::find($answer_id); 
+            $answer->option = $answer_data['option'];
+            $answer->GoodOpci = isset($answer_data['GoodOpci']) && $answer_data['GoodOpci'] == 'on' ? 1 : 0;
+            $answer->save();
+        }
+    }
+    
+    return redirect()->route('exams.index');
 }
 
 public function destroy($id)
 {
     $exam = Exam::find($id);
 
-    // Elimina las preguntas y respuestas asociadas al examen
     foreach ($exam->questions as $question) {
-        // Elimina las respuestas asociadas a la pregunta
+        
         foreach ($question->answers as $answer) {
             $answer->delete();
         }
 
-        // Ahora puedes eliminar la pregunta
         $question->delete();
     }
-
-    // Ahora puedes eliminar el examen
     $exam->delete();
-
-    // Redirige al usuario a la página de índice después de borrar el examen
+    
     return redirect()->route('exams.index');
 }
-
-public function update(Request $request, $id)
+public function solve(Request $request, $id)
 {
-    // Encuentra el examen en la base de datos usando el id
+    
     $exam = Exam::find($id);
 
-    // Actualiza los campos del examen con los datos del formulario
-    $exam->title = $request->input('EXaname');
-    $exam->course_id = $request->input('course_id');
-    $exam->save();
+    $correctAnswers = 0;
 
-    // Actualiza las preguntas y respuestas
-    foreach ($request->input('preguntas') as $pregunta) {
-        $question = Question::find($pregunta['id']); // Encuentra la pregunta en la base de datos
-        $question->ask = $pregunta['pregunta'];
-        $question->save();
-
-        foreach ($pregunta['respuestas'] as $respuesta) {
-            $answer = Answer::find($respuesta['id']); // Encuentra la respuesta en la base de datos
-            $answer->option = $respuesta['option'];
-            $answer->GoodOpci = isset($respuesta['GoodOpci']) && $respuesta['GoodOpci'] == 'on' ? 1 : 0;
-            $answer->save();
+    foreach ($request->input('answers') as $questionId => $answerId) {
+        
+        $question = Question::find($questionId);
+    
+        $correctAnswer = $question->answers()->where('GoodOpci', 1)->first();
+    
+        if ($correctAnswer->id == $answerId) {
+            
+            $correctAnswers++;
         }
     }
+    
+    $score = ($correctAnswers / count($exam->questions)) * 100;
 
-    // Redirige al usuario a la página de índice después de actualizar el examen
-    return redirect()->route('exams.index');
+    return redirect()->route('exams.results', ['id' => $exam->id, 'score' => $score]);
+
+    dd($score);
+
 }
+public function results($id)
+{
+    
+    $exam = Exam::find($id);
+
+    $score = $exam->score;
+
+    $correctQuestions = $exam->questions()->where('GoodOpc', 1)->get();
+
+    return view('exams.results', ['score' => $score, 'correctQuestions' => $correctQuestions]);
+    
+}
+
 
 
 }

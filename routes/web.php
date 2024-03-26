@@ -55,9 +55,14 @@ Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])-
 Route::get('/exams', [App\Http\Controllers\ExamController::class, 'index'])->name('exams.index');
 Route::post('/exams', [App\Http\Controllers\ExamController::class, 'store'])->name('exams.store');
 Route::get('/exams/{id}', [App\Http\Controllers\ExamController::class, 'show'])->name('exams.show');
-Route::put('/exams/{id}', [App\Http\Controllers\ExamController::class, 'update'])->name('exams.update');
+Route::put('/exams/{id}/update', [App\Http\Controllers\ExamController::class, 'update'])->name('exams.update');
 Route::get('/exams/{id}/edit', [App\Http\Controllers\ExamController::class, 'edit'])->name('exams.edit');
 Route::delete('/exams/{id}', [App\Http\Controllers\ExamController::class, 'destroy'])->name('exams.destroy');
+Route::post('/exams/{id}/solve', [App\Http\Controllers\ExamController::class, 'solve'])->name('exams.solve');
+Route::get('/exams/{id}/results', [App\Http\Controllers\ExamController::class, 'results'])->name('exams.results');
+
 //ruta para administrar tests
 Route::get('/tests', [App\Http\Controllers\TestController::class, 'index'])->name('tests.index');
 require __DIR__.'/auth.php';
+
+

@@ -11,8 +11,6 @@
         <div class="container">
           <form id="formulario" action="{{ route('exams.store') }}" method="post">
             @csrf
-              
-            
             
                 <!-- Aquí se agregarán los campos del formulario -->
             </form>
