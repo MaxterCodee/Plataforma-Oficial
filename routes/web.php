@@ -3,7 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\weekController;
 use Illuminate\Support\Facades\Route;
-use PharIo\Manifest\RequiresElement;
+
+use App\Http\Controllers\SatisfactionTestController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -75,10 +77,12 @@ Route::get('/exams', [App\Http\Controllers\ExamController::class, 'index'])->nam
 Route::get('/tests', [App\Http\Controllers\TestController::class, 'index'])->name('tests.index');
 require __DIR__.'/auth.php';
 
+// evaluacion del curso 
+Route::get('/evdocente',[SatisfactionTestController::class,'showQuestions'])->name('showQuestions');
+
+Route::post('/resultados',[SatisfactionTestController::class,'index'])->name('califProfe');
 
 // ruta para probar ckeditor
 Route::get('/ckeditor', function () {
     return view('lessons/ckeditor');
 });
-
-require "../routes/emiliano.php";

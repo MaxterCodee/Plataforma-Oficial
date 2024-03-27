@@ -1,3 +1,4 @@
+
 @if($courses->isEmpty())
     <p>No hay cursos disponibles.</p>
 @else
