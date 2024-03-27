@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('weeks', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('number');
-            $table->string('image_url')->nullable();
+            $table->text('comment')->nullable();
             $table->unsignedBigInteger('course_id');
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
-
+            
             $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('user_id')->references('id')->on('users');
+            
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('weeks');
+        Schema::dropIfExists('comments');
     }
 };

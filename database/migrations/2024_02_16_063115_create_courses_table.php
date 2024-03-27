@@ -18,6 +18,8 @@ return new class extends Migration
             $table->date('expiration_date')->nullable();
             $table->integer('status')->default(0);
             $table->string('image_url')->nullable();
+            $table->date('start_date');
+            $table->text('course_objectives')->nullable();
             $table->timestamps();
         });
     }

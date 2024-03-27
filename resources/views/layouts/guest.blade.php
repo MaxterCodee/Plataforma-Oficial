@@ -24,7 +24,7 @@
             <div>
                 <div class="row justify-content-center">
                     <div class="card bg-white rounded-4 border border-black">
-                        <div class="card-body d-flex flex-column mb-3 text-center">
+                        <div class="card-body d-flex flex-column text-center">
                             <a> <img class="ImagenLogin img-fluid mb-2 mt-2" src="img/logo.png" style="height:auto; width:320px"/> </a>
                             
                             {{$slot}}
